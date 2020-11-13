@@ -5,13 +5,17 @@
   
 
   
-  <title>Hexo</title>
+  <title>nginx下部署vue项目的缓存策略 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="背景在部署vue项目的过程中，发现经常已经更新了项目的打包文件，但是其他人使用起来还是访问的老版本。而自己打开浏览器用开发者工具刷新查看请求，就是正常的发送If-None-Match来匹配ETag，然后正常返回200或者是304。 原因问题实际上出现在Chrome的缓存策略上，如果我们没有设置Cache-Control，Chrome在我们第二次打开链接的时候就会使用缓存，而不会去管ETag相关的设">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx下部署vue项目的缓存策略">
+<meta property="og:url" content="http://example.com/2019/12/02/post2/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="背景在部署vue项目的过程中，发现经常已经更新了项目的打包文件，但是其他人使用起来还是访问的老版本。而自己打开浏览器用开发者工具刷新查看请求，就是正常的发送If-None-Match来匹配ETag，然后正常返回200或者是304。 原因问题实际上出现在Chrome的缓存策略上，如果我们没有设置Cache-Control，Chrome在我们第二次打开链接的时候就会使用缓存，而不会去管ETag相关的设">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-12-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-11-13T02:03:45.130Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -62,9 +66,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-post2" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-post2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/12/02/post2/" class="article-date">
   <time datetime="2019-12-01T16:00:00.000Z" itemprop="datePublished">2019-12-02</time>
@@ -77,8 +79,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/02/post2/">nginx下部署vue项目的缓存策略</a>
+    <h1 class="article-title" itemprop="name">
+      nginx下部署vue项目的缓存策略
     </h1>
   
 
@@ -101,51 +103,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/06/20/hello-world/" class="article-date">
-  <time datetime="2019-06-19T16:00:00.000Z" itemprop="datePublished">2019-06-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/20/hello-world/">yii2缓存写入失败问题排查记录</a>
-    </h1>
+    <a href="/2019/06/20/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">yii2缓存写入失败问题排查记录</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>今天遇到了一个很奇怪的bug，只有同事的手机登录系统一直失败，其他人的都正常。</p>
-<h2 id="发现原因"><a href="#发现原因" class="headerlink" title="发现原因"></a>发现原因</h2><p>在确认代码逻辑没问题后，发现是yii2写入缓存失败的问题。<br>我们yii2的缓存组件是使用文件组件，进入缓存所在的文件夹，发现有少数几个文件夹拥有者是root，而不是运行php-fpm的apache，而这几个文件夹的权限为775，所以apache没有写入的权限。</p>
-<h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h2><p>使用chmod赋值777权限后，写入正常。<br>那么是什么导致这几个root文件的生成的呢？因为我们用了定时任务执行commonds，但是指定的用户是root，所以才出现了这个问题。把crontab里的用户指定改成apache，这问题就解决了。</p>
-<h2 id="防范于未然"><a href="#防范于未然" class="headerlink" title="防范于未然"></a>防范于未然</h2><p>如果是有人登陆并手动执行了commonds的话，也可能会生成apache操作不了的文件，所以让运维把所有登陆用户和apache放在一个组里，这个问题就完全解决了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2019/06/20/hello-world/" data-id="ckhfmbegh0001nga362yod04k" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
-
 
 </section>
         
