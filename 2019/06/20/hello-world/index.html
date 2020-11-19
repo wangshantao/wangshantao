@@ -10,7 +10,7 @@
   <meta name="description" content="问题今天遇到了一个很奇怪的bug，只有同事的手机登录系统一直失败，其他人的都正常。 发现原因在确认代码逻辑没问题后，发现是yii2写入缓存失败的问题。我们yii2的缓存组件是使用文件组件，进入缓存所在的文件夹，发现有少数几个文件夹拥有者是root，而不是运行php-fpm的apache，而这几个文件夹的权限为775，所以apache没有写入的权限。 解决问题使用chmod赋值777权限后，写入正常">
 <meta property="og:type" content="article">
 <meta property="og:title" content="yii2缓存写入失败问题排查记录">
-<meta property="og:url" content="http://example.com/2019/06/20/hello-world/index.html">
+<meta property="og:url" content="https://www.ninn.top/2019/06/20/hello-world/index.html">
 <meta property="og:site_name" content="小蒜头">
 <meta property="og:description" content="问题今天遇到了一个很奇怪的bug，只有同事的手机登录系统一直失败，其他人的都正常。 发现原因在确认代码逻辑没问题后，发现是yii2写入缓存失败的问题。我们yii2的缓存组件是使用文件组件，进入缓存所在的文件夹，发现有少数几个文件夹拥有者是root，而不是运行php-fpm的apache，而这几个文件夹的权限为775，所以apache没有写入的权限。 解决问题使用chmod赋值777权限后，写入正常">
 <meta property="og:locale" content="zh_CN">
@@ -60,7 +60,7 @@
         <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://www.ninn.top"></form>
       </div>
     </div>
   </div>
@@ -96,7 +96,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2019/06/20/hello-world/" data-id="ckhfmy8sz0000nsa30nhi4czl" class="article-share-link">分享</a>
+      <a data-url="https://www.ninn.top/2019/06/20/hello-world/" data-id="ckho74b5w0000nga34ap9508n" class="article-share-link">分享</a>
       
       
     </footer>
